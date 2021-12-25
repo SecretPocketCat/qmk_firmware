@@ -10,9 +10,9 @@ enum anne_pro_layers {
 };
 
 enum custom_keycodes {
-    DEL_WORD,
+    DEL_WORD = 30000,
     BCKSPC_WORD,
-};
+}; 
 
  const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_BASE_LAYER] = KEYMAP( /* Base */
