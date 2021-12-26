@@ -44,6 +44,7 @@ RAW_ENABLE = yes
 MIDI_ENABLE = no
 VIRTSER_ENABLE = no
 COMBO_ENABLE = no
+WPM_ENABLE = yes
 
 # Custom led mcu wakeup delay
 ANNEPRO2_LED_MCU_WAKEUP_DELAY = 15

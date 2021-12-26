@@ -2,6 +2,7 @@
 #include "annepro2.h"
 #include "qmk_ap2_led.h"
 #include "config.h"
+#include "wpm.h"
 
 enum anne_pro_layers {
   _BASE_LAYER,
@@ -45,6 +46,39 @@ void matrix_init_user(void) {
 }
 
 void matrix_scan_user(void) {
+  // main loop stuff goes here?
+
+  if(!layer_state_is(_FN1_LAYER) && !layer_state_is(_FN2_LAYER)) {
+    uint8_t current_wpm = get_current_wpm();
+    const annepro2Led_t col = {
+      .p.red = 255,
+      .p.green = 255,
+      .p.blue = 255,
+      .p.alpha = 255,
+    };
+
+    const annepro2Led_t col_off = {
+      .p.red = 0,
+      .p.green = 0,
+      .p.blue = 0,
+      .p.alpha = 0,
+    };
+
+    uint8_t wpm_key_count = current_wpm / 10;
+    
+    if (wpm_key_count > 10) {
+      wpm_key_count = 10;
+    }
+
+    for (size_t i = 1; i <= 10; i++)
+    {
+      if (i <= wpm_key_count) {
+        annepro2LedMaskSetKey(0, i, col);
+      } else {
+        annepro2LedMaskSetKey(0, i, col_off);
+      }
+    }
+  }
 }
 
 // Code to run after initializing the keyboard

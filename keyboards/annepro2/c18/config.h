@@ -61,6 +61,11 @@
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
+// WPM Calc
+// #define WPM_LAUNCH_CONTROL
+#define WPM_SAMPLE_SECONDS 3
+#define WPM_SAMPLE_PERIODS 100
+
 #if defined(ANNEPRO2_EEPROM)
 // SPI Config
 #define SPI_DRIVER SPID1
