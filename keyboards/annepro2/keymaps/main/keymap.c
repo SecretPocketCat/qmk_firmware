@@ -12,22 +12,25 @@ enum anne_pro_layers {
 enum custom_keycodes {
     DEL_WORD = 30000,
     BCKSPC_WORD,
+    RUN_CMD,
+    RUN_POWERSHELL,
+    RUN_VS_CODE,
 };
 
  const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE_LAYER] = KEYMAP( /* Base */
       KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
       KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
-      LT(_FN2_LAYER, KC_CAPSLOCK), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
+      LT(_FN2_LAYER, KC_CAPSLOCK), LCTL_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LGUI_T(KC_F), KC_G, KC_H, RCTL_T(KC_J), RALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN), LT(_FN2_LAYER,KC_QUOT), KC_ENT,
       KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSPC,
-      KC_LCTRL, LALT_T(KC_LGUI), LT(_FN1_LAYER,KC_HOME), KC_SPC, LT(_FN1_LAYER,KC_END), MO(_FN2_LAYER), KC_RGUI, KC_RCTRL
+      KC_LCTRL, LALT_T(KC_LGUI), LT(_FN1_LAYER,KC_HOME), KC_SPC, LT(_FN1_LAYER,KC_END), RALT_T(KC_RGUI), KC_RGUI, KC_RCTRL
   ),
 
   [_FN1_LAYER] = KEYMAP(
       KC_GRV, KC_TRNS, RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5), RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, LWIN(KC_Z), LSFT(KC_UP), KC_MY_COMPUTER, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_ESCAPE, LSFT(KC_UP), KC_TRNS, RUN_CMD, KC_TRNS, KC_TRNS, KC_TRNS, KC_UP, KC_TRNS, RUN_POWERSHELL, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, LSFT(KC_LEFT), LSFT(KC_DOWN), LSFT(KC_RIGHT), KC_TRNS, KC_TRNS, KC_BSPACE, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DELETE, KC_TRNS, KC_TRNS,
-      KC_TRNS, LWIN(KC_Z), LWIN(KC_X), KC_CALCULATOR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_CALCULATOR, RUN_VS_CODE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
@@ -69,77 +72,20 @@ const annepro2Led_t LAYER2_COL = {
 
 const int8_t LAYER1_KEYS[][2] = 
 { 
-  {0,0},
-  {0,2},
-  {0,3},
-  {0,4},
-  {0,5},
-  {0,6},
-  {0,7},
-  {0,8},
-  {0,9},
-  {0,10},
-  {1,1},
-  {1,2},
-  {1,3},
-  {1,8},
-  {2,1},
-  {2,2},
-  {2,3},
-  {2,6},
-  {2,7},
-  {2,8},
-  {2,9},
-  {2,10},
-  {3,2},
-  {3,3},
-  {3,4},
+  {0,0}, {0,2}, {0,3}, {0,4}, {0,5}, {0,6}, {0,7}, {0,8}, {0,9}, {0,10},
+  {1,1}, {1,2}, {1,4}, {1,8}, {1,10}, 
+  {2,1}, {2,2}, {2,3}, {2,6}, {2,7}, {2,8}, {2,9}, {2,10},
+  {3,4}, {4,4},
 };
 
 const uint8_t LAYER1_SIZE = sizeof(LAYER1_KEYS) / sizeof(LAYER1_KEYS[0]);
 
 const int8_t LAYER2_KEYS[][2] = 
 { 
-  {0,1},
-  {0,2},
-  {0,3},
-  {0,4},
-  {0,5},
-  {0,6},
-  {0,7},
-  {0,8},
-  {0,9},
-  {0,10},
-  {0,11},
-  {0,12},
-  {0,13},
-  {1,2},
-  {1,4},
-  {1,8},
-  {1,10},
-  {1,11},
-  {1,12},
-  {1,13},
-  {2,1},
-  {2,2},
-  {2,3},
-  {2,6},
-  {2,7},
-  {2,8},
-  {2,9},
-  {2,10},
-  {2,11},
-  {2,12},
-  {3,2},
-  {3,3},
-  {3,4},
-  {3,5},
-  {3,6},
-  {3,7},
-  {3,8},
-  {3,9},
-  {3,10},
-  {3,11},
+  {0,1}, {0,2}, {0,3}, {0,4}, {0,5}, {0,6}, {0,7}, {0,8}, {0,9}, {0,10}, {0,11}, {0,12}, {0,13},
+  {1,2}, {1,4}, {1,8}, {1,10}, {1,11}, {1,12}, {1,13},
+  {2,1}, {2,2}, {2,3}, {2,6}, {2,7}, {2,8}, {2,9}, {2,10}, {2,11}, {2,12},
+  {3,2}, {3,3}, {3,4}, {3,5}, {3,6}, {3,7}, {3,8}, {3,9}, {3,10}, {3,11},
   {4,6},
 };
 
@@ -210,6 +156,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_RIGHT)SS_UP(X_LCTRL)SS_UP(X_LSHIFT)SS_TAP(X_BSPACE));
           }
           return false;
+
+      case RUN_CMD:
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "cmd" SS_TAP(X_ENTER));
+        }
+        return false;
+
+      case RUN_VS_CODE:
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "code" SS_TAP(X_ENTER));
+        }
+        return false;
+
+      case RUN_POWERSHELL:
+        if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "powershell" SS_TAP(X_ENTER));
+        }
+        return false;
     }
 
     return true;
