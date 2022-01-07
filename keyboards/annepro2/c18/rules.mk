@@ -32,8 +32,9 @@ OPT_DEFS = -Wno-unused-function -fdump-rtl-dfinish -fstack-usage
 # Keys
 CUSTOM_MATRIX = yes
 NKRO_ENABLE = no
-MOUSEKEY_ENABLE = no
-EXTRAKEY_ENABLE = yes
+MOUSEKEY_ENABLE = yes # Mouse keys
+EXTRAKEY_ENABLE = yes # Audio control and System control
+AUTO_SHIFT_ENABLE = yes # Auto Shift
 KEY_LOCK_ENABLE = no
 
 # Other featues
@@ -44,6 +45,7 @@ RAW_ENABLE = yes
 MIDI_ENABLE = no
 VIRTSER_ENABLE = no
 COMBO_ENABLE = no
+
 
 # Custom led mcu wakeup delay
 ANNEPRO2_LED_MCU_WAKEUP_DELAY = 15

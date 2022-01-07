@@ -4,9 +4,13 @@
 #include "config.h"
 
 enum anne_pro_layers {
-  _BASE_LAYER,
-  _FN1_LAYER,
-  _FN2_LAYER,
+  L_ALPHA,
+  L_NAV,
+  L_NUM,
+  L_MOUSE,
+  L_SYM,
+  L_FUN,
+  L_MED,
 };
 
 enum custom_keycodes {
@@ -18,28 +22,60 @@ enum custom_keycodes {
 };
 
  const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE_LAYER] = KEYMAP( /* Base */
-      KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
-      KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, RGUI_T(KC_LBRC), KC_RBRC, KC_BSLS,
-      LT(_FN2_LAYER, KC_CAPSLOCK), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCOLON, LT(_FN2_LAYER,KC_QUOT), KC_ENT,
-      KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSPC,
-      KC_LCTRL, LALT_T(KC_LGUI), LT(_FN1_LAYER,KC_HOME), KC_SPC, LT(_FN1_LAYER,KC_END), RALT_T(KC_RGUI), KC_RGUI, KC_RCTRL
+  [L_ALPHA] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_NO, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_NO,
+      KC_NO, LGUI_T(A), LALT_T(S), LCTL_T(D), LSFT_T(F), KC_G, KC_NO, KC_NO, KC_H, LSFT_T(J), LCTL_T(K), LALT_T(L), LGUI_T(SCOLON), KC_NO,
+      KC_Z, KC_X, KC_C, KC_V, KC_B, KC_NO, KC_NO, KC_NO, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH,
+      KC_NO, KC_NO, LT(L_MED, KC_ESCAPE), LT(L_NAV, KC_SPACE), LT(L_MOUSE, KC_TAB), KC_NO, KC_NO, KC_NO, LT(L_SYM, KC_ENTER), LT(L_NUM, KC_BSPACE), LT(L_FUN, KC_DELETE), KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 
-  [_FN1_LAYER] = KEYMAP(
-      KC_GRV, KC_TRNS, RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5), RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_ESCAPE, LSFT(KC_UP), KC_TRNS, RUN_CMD, KC_TRNS, KC_TRNS, KC_TRNS, KC_UP, KC_TRNS, RUN_POWERSHELL, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, LSFT(KC_LEFT), LSFT(KC_DOWN), LSFT(KC_RIGHT), KC_TRNS, KC_TRNS, KC_BSPACE, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DELETE, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_CALCULATOR, RUN_VS_CODE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  [L_NAV] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_AGAIN, KC_PASTE, KC_COPY, KC_CUT, KC_UNDO, KC_NO,
+      KC_NO, KC_LGUI, KC_LALT, KC_LCTRL, KC_LSHIFT, KC_NO, KC_NO, KC_NO, KC_CAPSLOCK, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_INSERT, KC_HOME, KC_PGDOWN, KC_PGUP, KC_END,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_ENTER, KC_BSPACE, KC_DELETE, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 
-  [_FN2_LAYER] = KEYMAP(
-      KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_MEDIA_PREV_TRACK,
-      KC_TRNS, KC_TRNS, RCS(KC_UP), KC_TRNS, KC_F5, KC_TRNS, KC_TRNS, KC_TRNS, RCTL(KC_UP), KC_TRNS, KC_PSCREEN, KC_AUDIO_VOL_UP, KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK,
-      KC_TRNS, RCS(KC_LEFT), RCS(KC_DOWN), RCS(KC_RIGHT), KC_TRNS, KC_TRNS, BCKSPC_WORD, RCTL(KC_LEFT), RCTL(KC_DOWN), RCTL(KC_RIGHT), DEL_WORD, KC_AUDIO_MUTE, KC_MEDIA_PLAY_PAUSE,
-      KC_TRNS, KC_AP2_BT1, KC_AP2_BT2, KC_AP2_BT3, KC_AP2_BT4, KC_AP2_USB, KC_AP_LED_PREV_PROFILE, KC_AP_LED_NEXT_PROFILE, KC_AP_LED_ON, KC_AP_LED_OFF, KC_AP_LED_NEXT_INTENSITY, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_ENT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  [L_NUM] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+  ),
+
+  [L_MOUSE] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+  ),
+  
+  [L_SYM] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+  ),
+
+  [L_FUN] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+  ),
+
+  [L_MED] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 };
 const uint16_t keymaps_size = sizeof(keymaps);
@@ -101,10 +137,10 @@ void set_layer_color(const int8_t layer_keys[][2], uint8_t key_count, annepro2Le
 
 layer_state_t layer_state_set_user(layer_state_t layer) {
   switch(get_highest_layer(layer)) {
-    case _FN1_LAYER:
+    case L_NAV:
       set_layer_color(LAYER1_KEYS, LAYER1_SIZE, LAYER1_COL);
       break;
-    case _FN2_LAYER:
+    case L_NUM:
       set_layer_color(LAYER2_KEYS, LAYER2_SIZE, LAYER2_COL);
       break;
     default:
@@ -129,7 +165,7 @@ bool led_update_user(led_t leds) {
     annepro2LedMaskSetKey(2, 0, color);
   } else {
     // Reset the capslock if there is no layer active
-    if(!layer_state_is(_FN1_LAYER) && !layer_state_is(_FN2_LAYER)) {
+    if(layer_state_is(L_ALPHA)) {
       const annepro2Led_t color = {
           .p.red = 0,
           .p.green = 0,
