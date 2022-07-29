@@ -7,65 +7,67 @@ enum anne_pro_layers {
   L_ALPHA,
   L_NAV,
   L_NUM,
-  L_MOUSE,
+  L_CS,
   L_SYM,
   L_FUN,
   L_MED,
 };
 
 enum custom_keycodes {
-    DEL_WORD = 30000,
-    BCKSPC_WORD,
-    RUN_CMD,
-    RUN_POWERSHELL,
-    RUN_VS_CODE,
+    CODE_AND = 30000,
+    CODE_OR,
+    // DEL_WORD,
+    // BCKSPC_WORD,
+    // RUN_CMD,
+    // RUN_POWERSHELL,
+    // RUN_VS_CODE,
 };
 
  const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_ALPHA] = KEYMAP( /* Base */
-      KC_Q, KC_W, KC_F, KC_P, KC_G, KC_NO, KC_NO, KC_NO, KC_J, KC_L, KC_U, KC_Y, KC_SCOLON, KC_NO,
-      KC_A, LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_D, KC_NO, KC_NO, KC_NO, KC_H, LSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), KC_O, KC_NO,
-      KC_Z, KC_X, KC_C, KC_V, KC_B, KC_NO, KC_NO, KC_NO, KC_K, KC_M, KC_COMMA, KC_DOT, KC_SLASH,
-      KC_NO, LT(L_MED, KC_ESCAPE), LT(L_NAV, KC_SPACE), LT(L_MOUSE, KC_TAB), KC_NO, KC_NO, KC_NO, KC_NO, LT(L_SYM, KC_ENTER), LT(L_NUM, KC_BSPACE), LT(L_FUN, KC_DELETE), KC_NO,
+      KC_NO, KC_Q, KC_W, KC_F, KC_P, KC_G, KC_NO, KC_NO, KC_J, KC_L, KC_U, KC_Y, KC_SCOLON, KC_NO,
+      KC_LSPO, KC_A, KC_R, KC_S, KC_T, KC_D, KC_NO, KC_NO, KC_H, KC_N, KC_E, KC_I, KC_O, KC_RSPC,
+      KC_NO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_NO, KC_NO, KC_K, KC_M, KC_COMMA, KC_DOT, KC_SLASH,
+      KC_NO, KC_NO, LT(L_MED, KC_ESCAPE), LT(L_NAV, KC_SPACE), LT(L_CS, KC_TAB), KC_NO, KC_NO, KC_NO, LT(L_SYM, KC_ENTER), LT(L_NUM, KC_BSPACE), LT(L_FUN, KC_DELETE), KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 
   [L_NAV] = KEYMAP( /* Base */
-      C(KC_X), C(KC_C), C(KC_V), C(KC_Z), C(KC_Y), KC_NO, KC_NO, KC_NO, C(KC_BSPACE), C(KC_LEFT), KC_UP, C(KC_RIGHT), C(KC_DELETE), KC_NO,
-      KC_LGUI, KC_LALT, KC_LCTRL, KC_LSHIFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, KC_NO,
+      KC_NO, C(KC_X), C(KC_C), C(KC_V), C(KC_Z), C(KC_Y), KC_NO, KC_NO, C(KC_BSPACE), C(KC_LEFT), KC_UP, C(KC_RIGHT), C(KC_DELETE), KC_NO,
+      KC_LSHIFT, KC_NO, KC_LGUI, KC_LALT, KC_LCTRL, KC_NO, KC_NO, KC_NO, KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, KC_LSHIFT,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, C(KC_PGUP), C(KC_PGDOWN), KC_PGDOWN, KC_PGUP, KC_CAPSLOCK,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_ENTER, KC_BSPACE, KC_DELETE, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TAB, KC_BSPACE, KC_DELETE, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 
   [L_NUM] = KEYMAP( /* Base */
-      KC_SLASH, KC_7, KC_8, KC_9, KC_RBRACKET, KC_NO, KC_NO, KC_NO, C(KC_X), C(KC_C), C(KC_V), C(KC_Z), C(KC_Y), KC_NO,
-      KC_KP_ASTERISK, KC_4, KC_5, KC_6, KC_EQUAL, KC_NO, KC_NO, KC_NO, KC_NO, KC_LSHIFT, KC_LCTRL, KC_LALT, KC_LGUI, KC_NO,
-      KC_GRAVE, KC_1, KC_2, KC_3, KC_MINUS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_DOT, KC_0, KC_COMMA, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, S(KC_COMMA), KC_7, KC_8, KC_9, S(KC_DOT), KC_NO, KC_NO, C(KC_X), C(KC_C), C(KC_V), C(KC_Z), C(KC_Y), KC_NO,
+      S(KC_9), KC_0, KC_1, KC_2, KC_3, KC_EQUAL, KC_NO, KC_NO, KC_BSLASH, KC_KP_PLUS, KC_KP_MINUS, KC_KP_ASTERISK, KC_KP_SLASH, S(KC_0),
+      KC_NO, KC_NO, KC_4, KC_5, KC_6, S(KC_GRAVE), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_DOT, KC_SPACE, KC_COMMA, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+  ),
+
+  [L_CS] = KEYMAP( /* Base */
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, RALT(KC_8), RALT(KC_5), RALT(KC_3), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
 
   [L_SYM] = KEYMAP( /* Base */
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
-  ),
-
-  [L_FUN] = KEYMAP( /* Base */
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_QUOTE, S(KC_5), S(KC_6), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      S(KC_9), S(KC_BSLASH), S(KC_7), KC_EQUAL, S(KC_1), S(KC_MINUS), KC_NO, KC_NO, KC_NO, S(KC_QUOTE), KC_RBRACKET, S(KC_RBRACKET), KC_SCOLON, S(KC_0),
+      KC_NO, S(KC_SCOLON), KC_GRAVE, S(KC_3), S(KC_4), RALT(KC_E), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_NO, KC_LBRACKET, KC_SPACE, RSFT(KC_LBRACKET), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
   
-  [L_MOUSE] = KEYMAP( /* Base */
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+  [L_FUN] = KEYMAP( /* Base */
+      KC_NO, KC_F12, KC_F7, KC_F8, KC_F9, C(KC_PSCREEN), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_F11, KC_F4, KC_F5, KC_F6, KC_PSCREEN, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+      KC_NO, KC_F10, KC_F1, KC_F2, KC_F3, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
   ),
@@ -181,35 +183,47 @@ bool led_update_user(led_t leds) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-      case BCKSPC_WORD:
+      case CODE_AND:
         if (record->event.pressed) {
-          SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_LEFT)SS_UP(X_LCTRL)SS_UP(X_LSHIFT)SS_TAP(X_BSPACE));
+          SEND_STRING("&&");
         }
         return false;
 
-      case DEL_WORD:
-          if (record->event.pressed) {
-            SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_RIGHT)SS_UP(X_LCTRL)SS_UP(X_LSHIFT)SS_TAP(X_BSPACE));
-          }
-          return false;
-
-      case RUN_CMD:
+      case CODE_OR:
         if (record->event.pressed) {
-          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "cmd" SS_TAP(X_ENTER));
+          SEND_STRING("||");
         }
         return false;
 
-      case RUN_VS_CODE:
-        if (record->event.pressed) {
-          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "code" SS_TAP(X_ENTER));
-        }
-        return false;
+      // case BCKSPC_WORD:
+      //   if (record->event.pressed) {
+      //     SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_LEFT)SS_UP(X_LCTRL)SS_UP(X_LSHIFT)SS_TAP(X_BSPACE));
+      //   }
+      //   return false;
 
-      case RUN_POWERSHELL:
-        if (record->event.pressed) {
-          SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "powershell" SS_TAP(X_ENTER));
-        }
-        return false;
+      // case DEL_WORD:
+      //     if (record->event.pressed) {
+      //       SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_RIGHT)SS_UP(X_LCTRL)SS_UP(X_LSHIFT)SS_TAP(X_BSPACE));
+      //     }
+      //     return false;
+
+      // case RUN_CMD:
+      //   if (record->event.pressed) {
+      //     SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "cmd" SS_TAP(X_ENTER));
+      //   }
+      //   return false;
+
+      // case RUN_VS_CODE:
+      //   if (record->event.pressed) {
+      //     SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "code" SS_TAP(X_ENTER));
+      //   }
+      //   return false;
+
+      // case RUN_POWERSHELL:
+      //   if (record->event.pressed) {
+      //     SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_R) SS_UP(X_LGUI) SS_DELAY(100) "powershell" SS_TAP(X_ENTER));
+      //   }
+      //   return false;
     }
 
     return true;
